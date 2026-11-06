@@ -57,3 +57,8 @@ Le site est disponible sur http://localhost:5173.
 
 Le modèle est entraîné sur des maisons de la région de Seattle (États-Unis) entre 2014 et 2015.
 Il ne donne pas de bonnes estimations pour d'autres villes ou pour le marché actuel.
+
+## Démo en ligne
+
+- Site : https://immopricepredictor.vercel.app
+- API : https://immo-price-predictor.vercel.app (documentation interactive sur `/docs`)
