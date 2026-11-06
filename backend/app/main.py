@@ -16,7 +16,7 @@ KNOWN_ZIPCODES = sorted(str(code) for code in zip_encoder.categories_[0])
 
 
 ALLOWED_ORIGINS = [
-    "https://immopricepredictor.vercel.app/",
+    "https://immopricepredictor.vercel.app",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
