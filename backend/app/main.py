@@ -7,7 +7,6 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
-# load the model
 MODEL_PATH = Path(__file__).resolve().parent.parent / "models" / "house_model.joblib"
 saved = joblib.load(MODEL_PATH)
 pipeline = saved["pipeline"]
@@ -15,12 +14,19 @@ FEATURES = saved["features"]
 zip_encoder = pipeline.named_steps["prep"].named_transformers_["zip"]
 KNOWN_ZIPCODES = sorted(str(code) for code in zip_encoder.categories_[0])
 
-app = FastAPI(title="Immo price Predictor")
+
+ALLOWED_ORIGINS = [
+    "https://immopricepredictor.vercel.app/",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+app = FastAPI(title="Immo Price Predictor API")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=ALLOWED_ORIGINS,
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
 )
 
 
@@ -62,7 +68,7 @@ class HouseInput(BaseModel):
 
 @app.get("/")
 def home():
-    return {"status": "ok", "project": "Immo Price Predictor API"}
+    return {"status": "ok", "project": "Immo Price Predictor"}
 
 
 @app.get("/zipcodes")
