@@ -62,7 +62,7 @@ class HouseInput(BaseModel):
 
 @app.get("/")
 def home():
-    return {"status": "ok", "project": "MaisonPrix"}
+    return {"status": "ok", "project": "Immo Price Predictor API"}
 
 
 @app.get("/zipcodes")
